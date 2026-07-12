@@ -393,7 +393,9 @@ func UpdateKategori(ctx *gin.Context) {
 
 	var setKategori structbuku.Kategori
 
-	*setKategori.ModifiedBy = username.(string)
+	setUsername := username.(string)
+
+	setKategori.ModifiedBy = &setUsername
 
 	if err := ctx.ShouldBindJSON(&setKategori); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
