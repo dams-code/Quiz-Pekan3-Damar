@@ -166,6 +166,11 @@ func TambahBuku(ctx *gin.Context) {
 		return
 	}
 
+	if setBuku.ReleaseYear == nil || *setBuku.ReleaseYear < 1980 || *setBuku.ReleaseYear > 2024 {
+		ctx.JSON(400, gin.H{"status_tambah_buku": "Tahun rilis buku harus antara 1980 dan 2024."})
+		return
+	}
+
 	usernameJWT, exists := ctx.Get("username_sekarang")
 	if !exists {
 		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Gagal mengidentifikasi user dari token"})

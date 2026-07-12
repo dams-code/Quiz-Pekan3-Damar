@@ -7,7 +7,7 @@ type BukuReq struct {
 	CategoryID  *int    `json:"category_id"`
 	Description string  `json:"description" binding:"required"`
 	ImageURL    *string `json:"image_url"`
-	ReleaseYear *int    `json:"release_year"`
+	ReleaseYear *int    `json:"release_year" validate:"required,gte=1980,lte=2024"`
 	Price       *int    `json:"price"`
 	TotalPage   *int    `json:"total_page"`
 	CreatedBy   *string `json:"created_by"`
@@ -21,7 +21,7 @@ type Buku struct {
 	CategoryName *string    `json:"category_name,omitempty"`
 	Description  string     `json:"description"`
 	ImageURL     *string    `json:"image_url"`
-	ReleaseYear  *int       `json:"release_year"`
+	ReleaseYear  *int       `json:"release_year" validate:"required,gte=1980,lte=2024"`
 	Price        *int       `json:"price"`
 	TotalPage    *int       `json:"total_page"`
 	Thickness    *string    `json:"thickness"`
