@@ -373,7 +373,7 @@ func HapusKategori(ctx *gin.Context) {
 func UpdateKategori(ctx *gin.Context) {
 	setIdKategori, err := strconv.Atoi(ctx.Param("id"))
 
-	username, exists := ctx.Get("username")
+	username, exists := ctx.Get("username_sekarang")
 
 	if !exists {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
