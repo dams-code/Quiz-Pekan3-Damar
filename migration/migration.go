@@ -19,6 +19,8 @@ func MigrasiDataBuku(dbParam *sql.DB) error {
 
 	tipedatabase := "postgres"
 
+	migrate.SetTable("gorp_migrations_buku")
+
 	hasilMigrasi, err := migrate.Exec(dbParam, tipedatabase, migrations, migrate.Up)
 
 	if err != nil {
