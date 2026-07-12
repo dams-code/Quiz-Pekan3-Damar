@@ -177,7 +177,7 @@ func HapusKategori(db *sql.DB, IdKategori int) (err error) {
 
 func GetBuku(db *sql.DB) (HasilGetBuku []structbuku.Buku, err error) {
 	querySelect := `
-		SELECT 	b.id, b.title, b.description, k.name AS categoryname,
+		SELECT 	b.id, b.title, b.description, b.category_id, k.name AS categoryname,
 				b.image_url, b.release_year, b.price, b.total_page,
 				b.thickness, b.created_at, b.created_by, 
 				b.modified_at, b.modified_by
@@ -269,7 +269,7 @@ func GetBukuBerdasarkanKategori(db *sql.DB, IdKategoriBuku int) (HasilGetBukuBer
 
 func GetBukuID(db *sql.DB, IdBuku int) (HasilGetBuku structbuku.Buku, err error) {
 	querySelect := `
-		SELECT 	b.id, b.title, b.description, k.category_id, k.name AS categoryname,
+		SELECT 	b.id, b.title, b.description, b.category_id, k.name AS categoryname,
 				b.image_url, b.release_year, b.price, b.total_page,
 				b.thickness, b.created_at, b.created_by, 
 				b.modified_at, b.modified_by
