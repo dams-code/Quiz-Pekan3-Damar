@@ -19,7 +19,7 @@ func KoneksiDB() (*sql.DB, error) {
 	err := godotenv.Load("config/.env")
 
 	if err != nil {
-		log.Fatalf("File .env tidak ada %v", err.Error())
+		log.Println("File config/.env tidak ditemukan")
 	}
 
 	psqlCon := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
