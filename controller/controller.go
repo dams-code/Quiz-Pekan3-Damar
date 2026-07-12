@@ -373,6 +373,16 @@ func HapusKategori(ctx *gin.Context) {
 func UpdateKategori(ctx *gin.Context) {
 	setIdKategori, err := strconv.Atoi(ctx.Param("id"))
 
+	username, exists := ctx.Get("username")
+
+	if !exists {
+		ctx.JSON(http.StatusUnauthorized, gin.H{
+			"status_update_kategori": "error",
+			"status_detail":          "User tidak terdeteksi",
+		})
+		return
+	}
+
 	if err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"status_update_kategori": "error",
@@ -382,6 +392,8 @@ func UpdateKategori(ctx *gin.Context) {
 	}
 
 	var setKategori structbuku.Kategori
+
+	*setKategori.ModifiedBy = username.(string)
 
 	if err := ctx.ShouldBindJSON(&setKategori); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{

@@ -116,14 +116,14 @@ func UpdateKategori(db *sql.DB, IdKategori int, setKategori structbuku.Kategori)
 		UPDATE Kategori
         SET name = $1, modified_by = $2, modified_at = NOW()
         WHERE id = $3
-        RETURNING id, name, modified_at, modified_by
+        RETURNING id, name, created_at, created_by, modified_at, modified_by
 	`
 
 	err = db.QueryRow(queryUpdate,
 		setKategori.Name,
 		setKategori.ModifiedBy, IdKategori,
 	).Scan(
-		&HasilUpdateKategori.ID, &HasilUpdateKategori.Name,
+		&HasilUpdateKategori.ID, &HasilUpdateKategori.Name, &HasilUpdateKategori.CreatedAt, &HasilUpdateKategori.CreatedBy,
 		&HasilUpdateKategori.ModifiedAt, &HasilUpdateKategori.ModifiedBy,
 	)
 
