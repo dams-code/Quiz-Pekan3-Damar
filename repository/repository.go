@@ -114,9 +114,9 @@ func GetKategoriID(db *sql.DB, IdKategori int) (HasilGetKategori structbuku.Kate
 func UpdateKategori(db *sql.DB, IdKategori int, setKategori structbuku.Kategori) (HasilUpdateKategori structbuku.Kategori, err error) {
 	queryUpdate := `
 		UPDATE Kategori
-		SET name = $1, modified_by = $2
-		WHERE id = $1
-		RETURNING name, modified_at, modified_by
+        SET name = $1, modified_by = $2, modified_at = NOW()
+        WHERE id = $3
+        RETURNING id, name, modified_at, modified_by
 	`
 
 	err = db.QueryRow(queryUpdate,
