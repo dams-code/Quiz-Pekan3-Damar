@@ -200,10 +200,9 @@ func GetBuku(db *sql.DB) (HasilGetBuku []structbuku.Buku, err error) {
 		var setBuku structbuku.Buku
 
 		err := rows.Scan(
-			&setBuku.ID, &setBuku.Title, &setBuku.CategoryName,
-			&setBuku.Description, &setBuku.ImageURL, &setBuku.ReleaseYear,
-			&setBuku.Price, &setBuku.TotalPage, &setBuku.Thickness,
-			&setBuku.CreatedAt, &setBuku.CreatedBy, &setBuku.ModifiedAt, &setBuku.ModifiedBy,
+			&setBuku.ID, &setBuku.Title, &setBuku.Description, &setBuku.CategoryID, &setBuku.CategoryName,
+			&setBuku.ImageURL, &setBuku.ReleaseYear, &setBuku.Price, &setBuku.TotalPage,
+			&setBuku.Thickness, &setBuku.CreatedAt, &setBuku.CreatedBy, &setBuku.ModifiedAt, &setBuku.ModifiedBy,
 		)
 
 		if err != nil {
@@ -270,7 +269,7 @@ func GetBukuBerdasarkanKategori(db *sql.DB, IdKategoriBuku int) (HasilGetBukuBer
 
 func GetBukuID(db *sql.DB, IdBuku int) (HasilGetBuku structbuku.Buku, err error) {
 	querySelect := `
-		SELECT 	b.id, b.title, b.description, k.name AS categoryname,
+		SELECT 	b.id, b.title, b.description, k.category_id, k.name AS categoryname,
 				b.image_url, b.release_year, b.price, b.total_page,
 				b.thickness, b.created_at, b.created_by, 
 				b.modified_at, b.modified_by
@@ -281,9 +280,10 @@ func GetBukuID(db *sql.DB, IdBuku int) (HasilGetBuku structbuku.Buku, err error)
 
 	err = db.QueryRow(querySelect, IdBuku).Scan(
 		&HasilGetBuku.ID, &HasilGetBuku.Title, &HasilGetBuku.Description,
-		&HasilGetBuku.CategoryName, &HasilGetBuku.ImageURL, &HasilGetBuku.ReleaseYear,
-		&HasilGetBuku.Price, &HasilGetBuku.TotalPage, &HasilGetBuku.Thickness,
-		&HasilGetBuku.CreatedAt, &HasilGetBuku.CreatedBy, &HasilGetBuku.ModifiedAt, &HasilGetBuku.ModifiedBy,
+		&HasilGetBuku.CategoryID, &HasilGetBuku.CategoryName, &HasilGetBuku.ImageURL,
+		&HasilGetBuku.ReleaseYear, &HasilGetBuku.Price, &HasilGetBuku.TotalPage,
+		&HasilGetBuku.Thickness, &HasilGetBuku.CreatedAt, &HasilGetBuku.CreatedBy,
+		&HasilGetBuku.ModifiedAt, &HasilGetBuku.ModifiedBy,
 	)
 
 	if err != nil {
