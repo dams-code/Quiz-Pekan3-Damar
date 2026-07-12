@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"quiz-pekan3-damar/controller"
 	"quiz-pekan3-damar/router"
 )
@@ -16,7 +17,10 @@ func main() {
 
 	controller.DBSqlConn = sqlCon
 
-	PORT := ":8080"
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 
-	router.StartServer(sqlCon).Run(PORT)
+	router.StartServer(sqlCon).Run(":" + port)
 }
