@@ -74,7 +74,7 @@ func GetKategori(db *sql.DB) (HasilAllKategori []structbuku.Kategori, err error)
 		err = rows.Scan(
 			&setKategori.ID, &setKategori.Name,
 			&setKategori.CreatedAt, &setKategori.CreatedBy,
-			&setKategori.ModifiedAt, &setKategori.ModifiedAt,
+			&setKategori.ModifiedAt, &setKategori.ModifiedBy,
 		)
 
 		if err != nil {
