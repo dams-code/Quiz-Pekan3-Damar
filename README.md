@@ -22,17 +22,19 @@
 
 | Method | Path | Deskripsi End point |
 | :--- | :--- | :--- |
-| `GET` | `/categories` | Menampilkan semua kategori |
-| `GET` | `/categories/:id` | Detail kategori berdasarkan ID |
-| `POST` | `/categories` | Menambah kategori baru |
-| `PUT` | `/categories/:id` | Mengupdate kategori |
-| `DELETE` | `/categories/:id` | Menghapus kategori |
-| `GET` | `/categories/:id/books` | Menampilkan buku dalam kategori tertentu |
-| `GET` | `/books` | Menampilkan semua buku |
-| `GET` | `/books/:id` | Detail buku berdasarkan ID |
-| `POST` | `/books` | Menambah buku baru |
-| `PUT` | `/books/:id` | Mengupdate buku |
-| `DELETE` | `/books/:id` | Menghapus buku |
+| `POST` | `/api/users/register` | Registrasi User |
+| `POST` | `/api/users/login` | Login User |
+| `GET` | `/api/categories` | Menampilkan semua kategori |
+| `GET` | `/api/categories/:id` | Detail kategori berdasarkan ID |
+| `POST` | `/api/categories` | Menambah kategori baru |
+| `PUT` | `/api/categories/:id` | Mengupdate kategori |
+| `DELETE` | `/api/categories/:id` | Menghapus kategori |
+| `GET` | `/api/categories/:id/books` | Menampilkan buku dalam kategori tertentu |
+| `GET` | `/api/books` | Menampilkan semua buku |
+| `GET` | `/api/books/:id` | Detail buku berdasarkan ID |
+| `POST` | `/api/books` | Menambah buku baru |
+| `PUT` | `/api/books/:id` | Mengupdate buku |
+| `DELETE` | `/api/books/:id` | Menghapus buku |
 
 ---
 
@@ -45,45 +47,51 @@ Hasil dari login nantinya mendapat token yang dapat digunakan untuk mengakses CR
 
 Langkah memulai-nya:
 
->1. Masuk ke postman kemudian paste link berikut pada kolom URL di postman: <br/>
+### 1. Masuk ke postman kemudian paste link berikut pada kolom URL di postman: <br/>
     ```
     https://quiz-pekan3-damar-production.up.railway.app/api/users/register
     ```
->2. Lalu lakukan registrasi bisa lihat pada gambar dibawah ini.<br/>
-    >Set METHOD : POST. <br/>
-    >**Cari tab Body** kemudian pilih **RAW** dan **pastikan JSON** lalu isi Isi username dan paswordnya. (disini output balikan dari json saya blur passwordnya dengan diganti jadi ****)<br/>
-    ><h3>Proses Registrasi</h3>
-    ><p align="left">
-    ><img src="gambar-dokumentasi-quiz/1-registrasi-di-postman.jpg" alt="registrasi di postman" width="1200"/>
-    ></p>
-    ><h3>Lokasi Tag Body</h3>
-    ><p align="left">
-    ><img src="gambar-dokumentasi-quiz/1-lokasi-tag-body.jpg" alt="registrasi di postman" width="600"/>
-    ></p> <br/>
->3. Setelah memasukan username dan password klik send, setelah berhasil ganti end-pointnya jadi **/api/users/login**, bisa dilihat pada gambar dibawah ini.<br/><br/>
-    >Set METHOD : POST. <br/>
-    >Isi username dan paswordnya. <br/>
-    ><h3>Proses Login</h3>
-    ><p align="left">
-    ><img src="gambar-dokumentasi-quiz/1-login-di-postman.jpg" alt="registrasi di postman" width="600"/>
-    ></p><br/>
->4. Saat Login sudah sukses, maka pada result body dibawah sendiri akan muncul **token**, dan **token** ini nanti yang akan dipasang dan digunakan untuk akses crud buku dan kategori, hasil saat login sukses dapat dilihat pada gambar dibawah ini.<br/>
-    ><h3>Login Sukses / Berhasil</h3>
-    ><p align="left">
-    ><img src="gambar-dokumentasi-quiz/2-Quiz-Pekan3-Damar-Proses-Login-User-Auto-Generate-Bearer-JWT-Token.jpg" alt="registrasi di postman" width="900"/>
-    ></p><br/>
->5. Setelah Login berhasil, selanjutnya Memasang Bearer JWT Token ke **Tab Authorization** pada postman.<br/>
-    >Pastikan membuka tab workspace baru disamping kanan tab workspace yang kita gunakan saat register dan login tadi (Jangan ditutup tab-nya).<br/>
-    ><h3>Lokasi Tab Workspace Baru</h3>
-    ><p align="left">
-    ><img src="gambar-dokumentasi-quiz/1-tab-baru.jpg" alt="registrasi di postman" width="400"/>
-    ></p>
-    ><h3>Lokasi Tab Authorization</h3>
-    ><p align="left">
-    ><img src="gambar-dokumentasi-quiz/1-auth-lokasi.jpg" alt="registrasi di postman" width="700"/>
-    ></p>
-    >6. Pada Authorization, nanti cukup pilih Auth-type : Bearer Token, dan isi tokennya yang diperoleh dari proses login tadi.<br/>
-    >7. Setelah itu dapat dilihat berikut ini proses yang sudah dicoba pada Restful API ini.
+### 2. Lalu lakukan registrasi bisa lihat pada gambar dibawah ini.<br/>
+- Set METHOD : POST. <br/>
+- **Cari tab Body** kemudian pilih **RAW** dan **pastikan JSON** lalu isi Isi username dan paswordnya. (disini output balikan dari json saya blur passwordnya dengan diganti jadi ****)<br/>
+<h3>Proses Registrasi</h3>
+<p align="left">
+<img src="gambar-dokumentasi-quiz/1-registrasi-di-postman.jpg" alt="registrasi di postman" width="1200"/>
+</p>
+<h3>Lokasi Tag Body</h3>
+<p align="left">
+<img src="gambar-dokumentasi-quiz/1-lokasi-tag-body.jpg" alt="registrasi di postman" width="600"/>
+</p> <br/>
+
+### 3. Setelah memasukan username dan password klik send, setelah berhasil ganti end-pointnya jadi **/api/users/login**, bisa dilihat pada gambar dibawah ini.<br/><br/>
+    
+- Set METHOD : POST. <br/>
+- Isi username dan paswordnya. <br/>
+
+<h3>Proses Login</h3>
+<p align="left">
+<img src="gambar-dokumentasi-quiz/1-login-di-postman.jpg" alt="registrasi di postman" width="600"/>
+</p><br/>
+
+### 4. Saat Login sudah sukses, maka pada result body dibawah sendiri akan muncul **token**, dan **token** ini nanti yang akan dipasang dan digunakan untuk akses crud buku dan kategori, hasil saat login sukses dapat dilihat pada gambar dibawah ini.<br/>
+<h3>Login Sukses / Berhasil</h3>
+<p align="left">
+<img src="gambar-dokumentasi-quiz/2-Quiz-Pekan3-Damar-Proses-Login-User-Auto-Generate-Bearer-JWT-Token.jpg" alt="registrasi di postman" width="900"/>
+</p><br/>
+
+### 5. Setelah Login berhasil, selanjutnya Memasang Bearer JWT Token ke **Tab Authorization** pada postman.<br/>
+- Pastikan membuka tab workspace baru disamping kanan tab workspace yang kita gunakan saat register dan login tadi (Jangan ditutup tab-nya).<br/>
+<h3>Lokasi Tab Workspace Baru</h3>
+<p align="left">
+<img src="gambar-dokumentasi-quiz/1-tab-baru.jpg" alt="registrasi di postman" width="400"/>
+</p>
+<h3>Lokasi Tab Authorization</h3>
+<p align="left">
+<img src="gambar-dokumentasi-quiz/1-auth-lokasi.jpg" alt="registrasi di postman" width="700"/>
+</p>
+
+### 6. Pada Authorization, nanti cukup pilih Auth-type : Bearer Token, dan isi tokennya yang diperoleh dari proses login tadi.<br/>
+### 7. Setelah itu dapat dilihat berikut ini proses yang sudah dicoba pada Restful API ini.
 
 ---
 
